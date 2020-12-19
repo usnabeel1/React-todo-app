@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 
 const  {Item}  = Form;
 
-export const ToDoForm = (props) => {
+export const TodoForm = (props) => {
     const {onSubmit} = props;
     
     const finish = (values) => {

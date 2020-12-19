@@ -1,15 +1,16 @@
 import React, { useState} from 'react';
 import {Card, Divider, Button} from 'antd';
-import { TodoItem } from './ToDoItem';
-import { ToDoForm } from './ToDoForm';
+import { Todoitem } from './Todoitem';
+import { TodoForm } from './TodoForm';
+import { format } from 'date-fns';
 
 
 
 export const ToDo = () => {
-
+    
     const [todos, setTodos] = useState([
-        {id: 1, name: 'todo 1', title:'Dr',description:'Doctor',checked: false},
-        {id: 2, name: 'todo 2', title:'Col',description:'Colonel',checked: false}
+        {id: 1, name: 'Todo 1', title:'Chore',description:'Do the laundry',checked:false,time:((format(Date.now(),'dd.MM.yyyy -hh:mm')))},
+        {id: 2, name: 'Todo 2', title:'Cook',description:'Make spaghetti', checked: false,time:((format(Date.now(),'dd.MM.yyyy -hh:mm')))}
     ]);
     
     const onCheck = (id) => {
@@ -25,38 +26,28 @@ export const ToDo = () => {
         setTodos([...todos]);
     }
     const removeAllChecked = () => {
-        for( let i = 0; i < todos.length; i++ ){
-            if(todos[i].checked === true) {
-                todos.splice(i, 1);
-            }
-        }
-        
-        setTodos([...todos])
-    }
+        var newArray = todos.filter(function (todo){
+            
+            return todo.checked === false;
 
-   const [count, setCount] = useState(0);
+        })
+        console.log(newArray)
+        setTodos([...newArray])
+    }
 
    const tasksundone = () =>{
+       var countUnchecked = 0;
         for (let i = 0; i<todos.length; i++){
             if (todos[i].checked === false){
-                setCount(count + 1);
+               // setCount(count + 1);
+               countUnchecked++;
+               
             }
         }
-        console.log(tasksundone)
-        this.useState({tasksundone})
-        setTodos([...todos])
+        console.log(countUnchecked)
+        return countUnchecked;
     }
-    
-    /*count(checked==false){
-        if (checked==false){
-            setCount(count+1)
-        }
-        else{
-            count --
-        }
-    }
-    */
-    
+     
     const [ids, setids] = useState(10);
 
     const renderItems = (todos) => {
@@ -66,19 +57,21 @@ export const ToDo = () => {
                 {todos.map(todo => {
                     console.log(todo)
                     return(
-                        <TodoItem item ={todo} onCheck = {onCheck} onRemove = {onRemove} />
+                        <Todoitem item ={todo} onCheck = {onCheck} onRemove = {onRemove} />
                     )
                 })}
             </ul>
         )
     }
+
     const onSubmit = (name,title,description)=>{
-        console.log(name, title,description)
+        console.log(name,title,description)
         const todo = {
             id: ids,
             name,
             title,
-            description,
+            time:((format(Date.now(),'dd.MM.yyyy -hh:mm'))),
+            description, 
             checked: false
         };
 
@@ -93,16 +86,10 @@ export const ToDo = () => {
             </Button>
         )
     }
-    const undonetask = () =>{
-        return(
-            <h4 count = {tasksundone}>Tasks undone</h4>
-        )
-    }
-    
 
     return(
         <Card title = {'My To-Do List'}>
-            <ToDoForm onSubmit={onSubmit}/>
+            <TodoForm onSubmit={onSubmit}/>
             <Divider/>
             { 
                renderItems(todos)
@@ -110,7 +97,7 @@ export const ToDo = () => {
             <Divider/>
             {utilsButtons()}
             <Divider/>
-            {undonetask()}
+            amount of Undone tasks: {tasksundone()}
         </Card>
     );
     
