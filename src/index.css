@@ -1,40 +1,59 @@
-#root {
-    display: flex;
-    height: 100%;
-  }
-  
-  .todo {
-    padding: 30px;
-  }
-  
-  .todo-card {
-    min-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .todo-list {
-    padding: 0;
-  }
-  
-  .todo-item {
-    list-style: none;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .todo-form {
-    justify-content: space-between;
-  }
-  
-  .todo-form > div:last-child {
-    margin-right: 0;
-  }
-  
-  .todo-form-input {
-    flex: 1!important;
-  }
-  .todo-form-actions {
-    flex: 0!important;
-  }
+#root{
+  display: flex;
+  height: 100%;
+}
+.todo {
+  padding: 30px;
+}
+
+.Todo-list {
+  padding: 0;
+}
+
+.Todo-item{
+  list-style: none;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-checkbox .ant-checkbox-inner{
+background-color:cornflowerblue;  
+border-color: gold; 
+width:25px;
+height:25px;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner{
+  width: 25px;
+  height: 25px;
+  background-color: cornflowerblue;
+  border-color: gold;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner{
+  width: 25px;
+  height: 25px;
+  background-color: rgb(160, 42, 160);
+  border-color: gold;
+  text-decoration: line-through;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner + item{
+  color: black;
+  text-decoration: line-through;
+}
+
+
+.todo-form{
+  justify-content: space-between;
+
+}
+.todo-form > div:last-child{
+  margin-right:0;
+}
+
+.todo-form input{
+  min-width: 240px;
+}

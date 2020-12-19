@@ -1,29 +1,28 @@
-import React from 'react';
-import { Button, Checkbox } from 'antd';
+import React, { useState} from 'react';
+import {Button, Checkbox } from 'antd';
+import {DeleteFilled} from '@ant-design/icons';
 
-export const ToDoItem = (props) => {
-  const { item, onCheck, onRemove } = props;
-  const onRemoveItem = (e) => {
-    e.preventDefault();
 
-    if (onRemove) {
-      onRemove(item.id);
+export const TodoItem = (props) => {
+    const { item, onCheck, onRemove } = props;
+
+    const check = () =>{
+        onCheck(item.id);
     }
-  }
 
-  const onCheckItem = () => {
-    if (onCheck) {
-      onCheck(item.id);
+    const Remove = () =>{
+        onRemove(item.id);
     }
-  }
-
-  return (
-    <li className="todo-item" key={item.id}>
-      <Checkbox 
-        checked={item.checked}
-        onChange={onCheckItem}
-      >{item.name}</Checkbox>
-      <Button onClick={onRemoveItem}>Remove</Button>
-    </li>
-  )
+    
+    return(
+        
+        <li className = "Todo-item" key = {item.id}>
+            <Checkbox classname = "checkbox" checked = {item.checked} onChange= {check} > {item.name}, {item.title}, {item.description}
+            </Checkbox>
+            <Button style = {{background:"#f5222d"}} onClick={Remove} icon = {<DeleteFilled />} ></Button> 
+        </li>
+        
+            
+    )
+    
 }
