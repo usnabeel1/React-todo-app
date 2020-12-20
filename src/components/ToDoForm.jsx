@@ -15,8 +15,8 @@ export const TodoForm = (props) => {
         onSubmit(values.name, values.title, values.description)
     }
 
-    const fieldsValidationMessage = "the name should not be lesss than 3 characters!";
-    const titlecapValidationmessage = "the title must begin with a capital letter!";
+    const fieldsValidationMessage = " name should be at least 3 characters!";
+    const titlecapValidationmessage = " title must begin with CAPS!";
     
 
 
